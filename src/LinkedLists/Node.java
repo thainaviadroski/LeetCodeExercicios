@@ -1,9 +1,9 @@
 package LinkedLists;
 
 public class Node<T> {
-    T value;
-    Node<T> next;
-    Node<T> prev;
+    public T value;
+    public Node<T> next;
+    public Node<T> prev;
 
     public Node() {
     }
