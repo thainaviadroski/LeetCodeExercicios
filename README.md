@@ -12,3 +12,4 @@ Implementação basica de linked list, metodos de adição de elementos, remoç�
 ## Algoritmos de ordenação 
 - Bubble Sort
 - Quick Sort 
+- Merge Sort
