@@ -1,5 +1,7 @@
 package BinaryTree;
 
+import java.util.List;
+
 public class BinaryTreeTest {
     static void main() {
         BinaryTree<Integer> tree = new BinaryTree<Integer>();
@@ -9,8 +11,10 @@ public class BinaryTreeTest {
             tree.insert(val);
         }
 
+        System.out.println(tree.toString());
+
         TreeNode<Integer> result1 = tree.search(7);
-       // TreeNode<Integer> result2 = tree.search(14);
+        // TreeNode<Integer> result2 = tree.search(14);
         TreeNode<Integer> result3 = tree.search(10);
         TreeNode<Integer> result4 = tree.search(18);
 
@@ -18,5 +22,10 @@ public class BinaryTreeTest {
 //        System.out.println(result2 != null ? "Encontrado: " + result2.val : "Não encontrado");
         System.out.println(result3 != null ? "Encontrado: " + result3.val : "Não encontrado");
         System.out.println(result4 != null ? "Encontrado: " + result4.val : "Não encontrado");
+
+        List<Integer> result = tree.preorderTraversal(tree);
+
+        System.out.println(result.toString());
+
     }
 }

@@ -1,5 +1,8 @@
 package BinaryTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryTree<T extends Comparable<T>> {
     private TreeNode<T> root;
 
@@ -46,5 +49,25 @@ public class BinaryTree<T extends Comparable<T>> {
             return searchRecursive(node.left, element);
         }
         return searchRecursive(node.right, element);
+    }
+
+    public List<T> preorderTraversal(BinaryTree<T> data) {
+        List<T> result = new ArrayList<>();
+        preorder(data.root, result);
+        return result;
+    }
+
+    private void preorder(TreeNode<T> root, List<T> result) {
+        if (root == null) return;
+        result.add(root.val);
+        preorder(root.left, result);
+        preorder(root.right, result);
+    }
+
+    @Override
+    public String toString() {
+        return "BinaryTree{" +
+                "root=" + root +
+                '}';
     }
 }
