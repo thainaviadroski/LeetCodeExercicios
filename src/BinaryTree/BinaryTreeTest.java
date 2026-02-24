@@ -25,7 +25,12 @@ public class BinaryTreeTest {
 
         List<Integer> result = tree.preorderTraversal(tree);
 
-        System.out.println(result.toString());
+        System.out.println("Preorder: "  +result.toString());
 
+        result = tree.inorderTraversal(tree);
+        System.out.println("Inorder: " + result.toString());
+
+        result = tree.posorderTraversal(tree);
+        System.out.println("Posorder: " + result.toString());
     }
 }

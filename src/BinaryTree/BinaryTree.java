@@ -64,6 +64,32 @@ public class BinaryTree<T extends Comparable<T>> {
         preorder(root.right, result);
     }
 
+    public List<T> inorderTraversal(BinaryTree<T> data) {
+        List<T> result = new ArrayList<>();
+        inorder(data.root, result);
+        return result;
+    }
+
+    private void inorder(TreeNode<T> root, List<T> result) {
+        if (root == null) return;
+        inorder(root.left, result);
+        result.add(root.val);
+        inorder(root.right, result);
+    }
+
+    public List<T> posorderTraversal(BinaryTree<T> data) {
+        List<T> result = new ArrayList<>();
+        posorder(data.root, result);
+        return result;
+    }
+
+    private void posorder(TreeNode<T> root, List<T> result) {
+        if (root == null) return;
+        posorder(root.left, result);
+        posorder(root.right, result);
+        result.add(root.val);
+    }
+
     @Override
     public String toString() {
         return "BinaryTree{" +
