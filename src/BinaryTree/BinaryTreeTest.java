@@ -5,7 +5,7 @@ import java.util.List;
 public class BinaryTreeTest {
     static void main() {
         BinaryTree<Integer> tree = new BinaryTree<Integer>();
-        Integer[] valuesToInsert = {10, 5, 15, 3, 7, 12, 18};
+        Integer[] valuesToInsert = {10, 5, 15, 3, 7, 12, 18, 35, 90, 100, 69};
 
         for (Integer val : valuesToInsert) {
             tree.insert(val);
@@ -25,12 +25,19 @@ public class BinaryTreeTest {
 
         List<Integer> result = tree.preorderTraversal(tree);
 
-        System.out.println("Preorder: "  +result.toString());
+        System.out.println("Preorder: " + result.toString());
 
         result = tree.inorderTraversal(tree);
         System.out.println("Inorder: " + result.toString());
 
         result = tree.posorderTraversal(tree);
         System.out.println("Posorder: " + result.toString());
+
+
+        System.out.println(tree.toString());
+        System.out.println("----------------- DFS ---------------");
+        System.out.println(tree.dfs(69));
+
+
     }
 }

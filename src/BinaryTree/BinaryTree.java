@@ -51,6 +51,27 @@ public class BinaryTree<T extends Comparable<T>> {
         return searchRecursive(node.right, element);
     }
 
+    public boolean dfs(T element) {
+        return dfsRecursive(this.root, element);
+    }
+
+    private boolean dfsRecursive(TreeNode<T> node, T element) {
+        if (node == null) {
+            return false;
+        }
+        System.out.println(node.val);
+        if (node.val.equals(element)) {
+            return true;
+        }
+        if (dfsRecursive(node.left, element)) {
+            return true;
+        }
+        if (dfsRecursive(node.right, element)) {
+            return true;
+        }
+        return false;
+    }
+
     public List<T> preorderTraversal(BinaryTree<T> data) {
         List<T> result = new ArrayList<>();
         preorder(data.root, result);
@@ -92,8 +113,29 @@ public class BinaryTree<T extends Comparable<T>> {
 
     @Override
     public String toString() {
-        return "BinaryTree{" +
-                "root=" + root +
-                '}';
+        if (root == null) return "(árvore vazia)";
+
+        StringBuilder sb = new StringBuilder();
+        buildString(root, sb, "", "");
+        return sb.toString();
+    }
+
+
+    private void buildString(TreeNode<T> node, StringBuilder sb,
+                             String prefix, String childPrefix) {
+        if (node == null) return;
+
+        sb.append(prefix).append("[ ").append(node.val).append(" ]\n");
+
+        if (node.left != null || node.right != null) {
+            // filho direito primeiro (fica "em cima" visualmente)
+            buildString(node.right, sb,
+                    childPrefix + "├── (D) ",
+                    childPrefix + "│   ");
+
+            buildString(node.left, sb,
+                    childPrefix + "└── (E) ",
+                    childPrefix + "    ");
+        }
     }
 }
