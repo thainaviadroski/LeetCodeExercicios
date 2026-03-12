@@ -1,23 +1,20 @@
 package BinaryTree;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class BinaryTreeTraversal {
+public class BinaryTreeResolveLetCode {
 
     private static Map<Integer, Integer> inorderMap;
     private static int[] postorder;
 
     static void main() {
-//        TreeNode<Integer> root = new TreeNode(4);
-//        root.left = new TreeNode(2);
-//        root.right = new TreeNode(6);
-//        root.left.left = new TreeNode(1);
-//        root.left.right = new TreeNode(3);
-//        root.right.left = new TreeNode(5);
-//        root.right.right = new TreeNode(7);
+        TreeNode<Integer> root = new TreeNode(4);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(6);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(3);
+        root.right.left = new TreeNode(5);
+        root.right.right = new TreeNode(7);
 //
 //        List<Integer> result = preorderTraversal(root);
 //        System.out.println("Preorder: " + result.toString());
@@ -28,14 +25,24 @@ public class BinaryTreeTraversal {
 //        result = posorderTraversal(root);
 //        System.out.println("Posorder: " + result.toString());
 
-        System.out.println("-----------------------------");
-        System.out.println("Build tree traversal");
-        int[] inorder = {9, 3, 15, 20, 7};
-        postorder = new int[]{9, 15, 20, 7, 3};
+//        System.out.println("-----------------------------");
+//        System.out.println("Build tree traversal");
+//        int[] inorder = {9, 3, 15, 20, 7};
+//        postorder = new int[]{9, 15, 20, 7, 3};
+//
+//
+//        TreeNode root2 = buildTree(inorder, postorder);
+//        System.out.println(root2.toString());
+//
+//
+//        System.out.println("++++++++++++++++++ Path Sum +++++++++++++++++++++++++++++++");
+//        System.out.println(hasPathSum(root2, 12));
 
+     System.out.println("Original: " + root.toString());
+//        TreeNode<Integer> result = invertTree(root);
+//        System.out.println("\nInvertida: " + result.toString());
 
-        TreeNode root = buildTree(inorder, postorder);
-        System.out.println(root.toString());
+        bfs(root, 3);
 
     }
 
@@ -115,8 +122,6 @@ public class BinaryTreeTraversal {
 //    }
 
 
-
-
     public static TreeNode buildTree(int[] inorder, int[] postorder) {
         postorder = postorder;
         inorderMap = new HashMap<>();
@@ -142,5 +147,49 @@ public class BinaryTreeTraversal {
 
         return root;
     }
+
+    // DFS - Path Sum
+
+    public static boolean hasPathSum(TreeNode<Integer> node, int target) {
+        if (node == null) {
+            return false;
+        }
+        if (node.left == null && node.right == null) {
+            return target == node.val;
+        }
+        return hasPathSum(node.left, target - node.val) || hasPathSum(node.right, target - node.val);
+    }
+
+    public static TreeNode<Integer> invertTree(TreeNode<Integer> root) {
+        if (root == null) return null;
+
+        TreeNode<Integer> temp = root.left;
+        root.left = invertTree(root.right);
+        root.right = invertTree(temp);
+        return root;
+    }
+
+    // BFS - Breadth First Search
+
+
+    public static TreeNode<Integer> bfs(TreeNode<Integer> root, int target) {
+        if (root == null) return null;
+
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> node = queue.poll();
+            System.out.println(node.val);
+
+            if(node.val == target) return node;
+            if(node.left != null) queue.add(node.left);
+            if(node.right != null) queue.add(node.right);
+        }
+        return null;
+    }
+
+
+
 
 }
