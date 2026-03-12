@@ -38,7 +38,7 @@ public class BinaryTreeResolveLetCode {
 //        System.out.println("++++++++++++++++++ Path Sum +++++++++++++++++++++++++++++++");
 //        System.out.println(hasPathSum(root2, 12));
 
-     System.out.println("Original: " + root.toString());
+        System.out.println("Original: " + root.toString());
 //        TreeNode<Integer> result = invertTree(root);
 //        System.out.println("\nInvertida: " + result.toString());
 
@@ -182,14 +182,36 @@ public class BinaryTreeResolveLetCode {
             TreeNode<Integer> node = queue.poll();
             System.out.println(node.val);
 
-            if(node.val == target) return node;
-            if(node.left != null) queue.add(node.left);
-            if(node.right != null) queue.add(node.right);
+            if (node.val == target) return node;
+            if (node.left != null) queue.add(node.left);
+            if (node.right != null) queue.add(node.right);
         }
         return null;
     }
 
+    public static List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null)
+            return null;
 
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
 
+        List<List<Integer>> res = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            List<Integer> level = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode<Integer> node = queue.poll();
+                if (node != null) {
+                    level.add(node.val);
+                    if (node.left != null) queue.add(node.left);
+                    if (node.right != null) queue.add(node.right);
+                }
+            }
 
+            if (!level.isEmpty())
+                res.add(level);
+        }
+        return res;
+    }
 }
